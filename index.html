@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>南极的冰，看见宇宙 · 配音练读</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="reader">
+    <header class="masthead">
+      <div><p class="eyebrow">配音练习 / 2026 物理诺奖</p><h1>南极的冰，看见宇宙</h1></div>
+      <nav aria-label="页面视图"><button id="practiceTab" class="tab selected" aria-pressed="true">跟读练习</button><button id="reviewTab" class="tab" aria-pressed="false">红字审校</button></nav>
+    </header>
+    <section id="practiceView">
+      <div class="toolbar">
+        <label>稿子 <select id="version"><option value="revised">建议修改版</option><option value="original">原稿</option></select></label>
+        <label>练习速度 <select id="rate"><option value="0.8">0.8× 慢练</option><option value="1" selected>1.0× 原速</option><option value="1.2">1.2× 快练</option></select></label>
+        <label class="check"><input id="loop" type="checkbox">单段循环</label>
+        <label class="check"><input id="showVideo" type="checkbox" checked>显示画面</label>
+        <label class="fileButton">选择本地视频<input id="videoFile" type="file" accept="video/*"></label>
+      </div>
+      <p class="notice">逐字高亮是按句子时间窗和标点停顿估算的<strong>建议节奏</strong>，不是识别你的声音。页面不录音；在剪映中录音，或先在这里练习。</p>
+      <div class="workspace">
+        <section class="videoPanel" aria-label="同步视频">
+          <video id="video" controls playsinline preload="metadata" aria-label="参考视频"></video>
+          <div class="videoInfo"><span id="mediaStatus">正在读取同文件夹的视频…</span><span class="small">视频与文字共用同一时钟</span></div>
+          <p id="mediaWarning" class="warning" hidden></p>
+          <div class="scene"><p class="eyebrow">这一段的画面</p><p id="sceneText"></p></div>
+        </section>
+        <section class="cuePanel" aria-label="当前朗读位置">
+          <div class="cueTop"><span id="segmentLabel" class="pill">第 01 / 30 段</span><span id="windowLabel" class="mono"></span></div>
+          <div class="cueStatus"><span id="stateLabel">准备</span><span id="currentWord"></span></div>
+          <p id="previousLine" class="contextLine"></p>
+          <p id="currentLine" class="currentLine" aria-label="当前句子，带逐字进度"></p>
+          <p id="nextLine" class="contextLine nextLine"></p>
+          <div class="hint"><span id="pronunciation"></span><span id="speedHint"></span></div>
+          <div class="cueProgress" aria-hidden="true"><div id="cueFill"></div></div>
+          <div class="segmentActions"><button id="previousSegment">上一段</button><button id="restartSegment">从本段开始</button><button id="nextSegment">下一段</button></div>
+        </section>
+      </div>
+      <section class="transport" aria-label="播放控制">
+        <div class="transportRow"><button id="backSecond" aria-label="后退一秒">−1 秒</button><button id="play" class="primary">播放练习</button><button id="forwardSecond" aria-label="前进一秒">＋1 秒</button><div class="time"><output id="timeLabel" class="mono">00:00.00</output><span>/</span><span id="durationLabel" class="mono">02:27.38</span></div><span id="clockLabel" class="clockLabel">文字计时</span></div>
+        <label class="srOnly" for="seek">拖动到视频时间</label><input id="seek" class="seek" type="range" min="0" max="147.375" step="0.01" value="0">
+        <div class="ticks"><span>00:00</span><span>00:30</span><span>01:00</span><span>01:30</span><span>02:00</span><span>02:27</span></div>
+        <p class="small">空格播放／暂停 · ← → 前后 1 秒 · 点击下面任意段落跳转 · 慢练会同时减慢视频和文字，正式配音使用 1.0×</p>
+      </section>
+      <section class="segmentList" aria-label="30 段口播稿"><div class="listHeading"><h2>全文 · 点击定位</h2><span>下划线红字＝建议修改</span></div><div id="segmentList"></div></section>
+    </section>
+    <section id="reviewView" hidden>
+      <div class="reviewIntro"><p class="eyebrow">逐段检查 / 原稿对照</p><h2>故事是连贯的，局部更清楚、更顺口。</h2><p>红字及下划线是新增或替换内容；删去的文字可以与原稿对照。保留 30 段和原来的画面结构，第 30 段建议结束延后至 02:26.00。</p><p>采用修改稿后，请同步更新剪映中的字幕。如果字幕已烧录进视频，修改 SRT 无法去掉旧字，练习建议使用无字幕视频。</p><div class="downloads"><a href="口播稿_红字审校.html" target="_blank">完整红字审校 / 打印</a><a href="旁白稿_建议修改版.txt" download>下载建议口播稿</a><a href="字幕_建议修改版.srt" download>下载对应 SRT</a></div></div>
+      <div id="reviewList"></div>
+      <section class="sources"><h2>核对依据</h2><ul id="sourceList"></ul></section>
+    </section>
+    <footer>先练自然，再卡时间。字级位置可作节奏参考；最终同步以你的录音和画面为准。</footer>
+  </main>
+  <script src="data.js"></script>
+  <script src="timing.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
